@@ -68,22 +68,24 @@ public class YetkiliServiceImpl implements IYetkiliService {
         if (yetkili.getKullaniciAdi() == null && yetkili.getParola() == null) {
             throw new Exception("Lütfen Kullanıcı adı ve Şifre giriniz!");
         }
-        Yetkili ycont = yetkiliRepo.findByKullaniciAdiAndParola(yetkili.getKullaniciAdi(),yetkili.getParola());
+        Yetkili ycont = yetkiliRepo.findByKullaniciAdiAndParola(yetkili.getKullaniciAdi(), yetkili.getParola());
         if (ycont == null) {
-            throw new Exception("Yetkili Bulunamadı");
+            throw new Exception("Yetkili bulunamadı");
         }
         return modelMapper.map(ycont, YetkiliDTO.class);
 
 
     }
+
     @Override
     public Yetkili findByKullaniciAdi(String kullaniciAdi) throws Exception {
 
         Yetkili ycont = yetkiliRepo.findByKullaniciAdi(kullaniciAdi);
-        if (ycont == null) {
-            throw new Exception("Yetkili Bulunamadı");
+        if (ycont != null) {
+            return modelMapper.map(ycont, Yetkili.class);
+
         }
-        return modelMapper.map(ycont, Yetkili.class);
+        return null;
 
 
     }
