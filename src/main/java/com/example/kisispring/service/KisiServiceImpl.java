@@ -1,7 +1,9 @@
 package com.example.kisispring.service;
 
 import com.example.kisispring.dto.KisiDTO;
+import com.example.kisispring.dto.YetkiliDTO;
 import com.example.kisispring.entity.Kisi;
+import com.example.kisispring.entity.Yetkili;
 import com.example.kisispring.repo.IKisiRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -36,8 +38,13 @@ public class KisiServiceImpl implements IKisiService {
 
         if (kisi.getId() != null)
             throw new Exception("Id dolu olamaz");
+        Kisi k=new Kisi();
+        k.setAdi(kisi.getAdi());
+        k.setSoyadi(kisi.getSoyadi());
+        k.setEMail(kisi.getEMail());
+        k.setTcKimlikNo(kisi.getTcKimlikNo());
+        k.setSifre(kisi.getSifre());
 
-        Kisi k = modelMapper.map(kisi, Kisi.class);
         return modelMapper.map(kisiRepo.save(k), KisiDTO.class);
     }
 
@@ -48,9 +55,13 @@ public class KisiServiceImpl implements IKisiService {
         Kisi kg = kisiRepo.getOne(kisi.getId());
         if (kg == null)
             throw new Exception("Kisi Bulunamadı");
+        kg.setAdi(kg.getAdi());
+        kg.setSoyadi(kg.getSoyadi());
+        kg.setEMail(kg.getEMail());
+        kg.setTcKimlikNo(kg.getTcKimlikNo());
+        kg.setSifre(kg.getSifre());
 
-        Kisi k = modelMapper.map(kisi, Kisi.class);
-        return modelMapper.map(kisiRepo.save(k), KisiDTO.class);
+        return modelMapper.map(kisiRepo.save(kg), KisiDTO.class);
     }
 
     @Override
@@ -61,6 +72,17 @@ public class KisiServiceImpl implements IKisiService {
     @Override
     public List<KisiDTO> tumunuGetir() {
         return modelMapper.map(kisiRepo.findAll(),new TypeToken<List<KisiDTO>>(){}.getType());
+    }
+    @Override
+    public KisiDTO girisControl(KisiDTO kisi) throws Exception {
+
+        Kisi kcont = kisiRepo.findByTcKimlikNoAndSifre(kisi.getTcKimlikNo(), kisi.getSifre());
+        if (kcont == null) {
+            throw new Exception("Üye bulunamadı");
+        }
+        return modelMapper.map(kcont, KisiDTO.class);
+
+
     }
 
 

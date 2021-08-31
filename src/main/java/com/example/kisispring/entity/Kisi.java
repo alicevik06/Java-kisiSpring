@@ -29,6 +29,7 @@ public class Kisi extends BaseEntity {
     @NotNull
     String tcKimlikNo;
     EnumStatu statu;
+    String sifre;
 
 
 

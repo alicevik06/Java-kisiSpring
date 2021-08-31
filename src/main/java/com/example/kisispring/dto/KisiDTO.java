@@ -19,6 +19,7 @@ public  class KisiDTO extends BaseDTO{
     private String eMail;
     private EnumDepartman departman;
     private EnumStatu statu;
+    private String sifre;
 
 
 }
