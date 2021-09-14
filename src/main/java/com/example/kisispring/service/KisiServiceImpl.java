@@ -1,9 +1,7 @@
 package com.example.kisispring.service;
 
 import com.example.kisispring.dto.KisiDTO;
-import com.example.kisispring.dto.YetkiliDTO;
 import com.example.kisispring.entity.Kisi;
-import com.example.kisispring.entity.Yetkili;
 import com.example.kisispring.repo.IKisiRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

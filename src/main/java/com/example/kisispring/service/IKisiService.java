@@ -1,7 +1,6 @@
 package com.example.kisispring.service;
 
 import com.example.kisispring.dto.KisiDTO;
-import com.example.kisispring.dto.YetkiliDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
