@@ -1,4 +1,4 @@
-package com.example.kisispring.requestFilter;
+package com.example.kisispring.common;
 
 
 import org.springframework.core.Ordered;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 
-public class requestFilter implements Filter {
+public class RequestFilter implements Filter {
 
     @Override
 
