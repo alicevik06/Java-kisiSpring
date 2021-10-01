@@ -1,8 +1,7 @@
 package com.example.kisispring;
 
-import com.example.kisispring.dto.YetkiliDTO;
-import com.example.kisispring.entity.Yetkili;
-import com.example.kisispring.service.IYetkiliService;
+import com.example.kisispring.dto.KullaniciDTO;
+import com.example.kisispring.service.IKullaniciService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
@@ -22,23 +21,23 @@ public class KisiSpringApplication {
     }
 
     @Bean
-    CommandLineRunner runner(IYetkiliService yetkiliService) {
+    CommandLineRunner runner(IKullaniciService kullaniciService) {
         return args -> {
             ObjectMapper mapper = new ObjectMapper();
-            TypeReference<List<YetkiliDTO>> ref = new TypeReference<List<YetkiliDTO>>() {
+            TypeReference<List<KullaniciDTO>> ref = new TypeReference<List<KullaniciDTO>>() {
             };
-            InputStream inputStream = TypeReference.class.getResourceAsStream("/yetkiliKisi.json");
+            InputStream inputStream = TypeReference.class.getResourceAsStream("/Kullanici.json");
             try {
-                List<YetkiliDTO> yetkililer = mapper.readValue(inputStream, ref);
-                YetkiliDTO yetkili = yetkililer.get(0);
+                List<KullaniciDTO> kullanicilar = mapper.readValue(inputStream, ref);
+                KullaniciDTO kullanici = kullanicilar.get(0);
 
-                if (yetkiliService.findByKullaniciAdi(yetkili.getKullaniciAdi()) == null) {
-                    yetkiliService.yetkiliKaydet(yetkili);
+                if (kullaniciService.findByKullaniciAdi(kullanici.getKullaniciAdi()) == null) {
+                    kullaniciService.kullaniciKaydet(kullanici);
 
                 }
 
             } catch (IOException e) {
-                System.out.println("Unable to save Yetkili Kişi" + e.getMessage());
+                System.out.println("Unable to save Kullanici Kişi" + e.getMessage());
             }
         };
     }

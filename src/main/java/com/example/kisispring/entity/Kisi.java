@@ -23,13 +23,13 @@ public class Kisi extends BaseEntity {
     String adi;
     String soyadi;
     String cepTel;
-    String eMail;
-    @Enumerated
-    EnumDepartman departman;
     @NotNull
     String tcKimlikNo;
+    String mail;
+    @Enumerated
+    EnumDepartman departman;
     EnumStatu statu;
-    String sifre;
+
 
 
 

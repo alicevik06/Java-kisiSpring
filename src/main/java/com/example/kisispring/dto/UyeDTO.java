@@ -9,9 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class YetkiliDTO extends BaseDTO{
-   private String adi;
-   private String soyadi;
-   private String kullaniciAdi;
-   private String parola;
+public class UyeDTO extends BaseDTO {
+
+    private String adi;
+    private String soyadi;
+    private String tcKimlikNo;
+    private String mail;
+    private String sifre;
+
+
 }

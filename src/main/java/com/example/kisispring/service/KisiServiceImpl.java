@@ -37,13 +37,15 @@ public class KisiServiceImpl implements IKisiService {
         if (kisi.getId() != null)
             throw new Exception("Id dolu olamaz");
         Kisi k=new Kisi();
-        k.setAdi(kisi.getAdi());
-        k.setSoyadi(kisi.getSoyadi());
-        k.setEMail(kisi.getEMail());
-        k.setTcKimlikNo(kisi.getTcKimlikNo());
-        k.setSifre(kisi.getSifre());
+//        k.setAdi(kisi.getAdi());
+//        k.setSoyadi(kisi.getSoyadi());
+//        k.setMail(kisi.getMail());
+//        k.setTcKimlikNo(kisi.getTcKimlikNo());
 
-        return modelMapper.map(kisiRepo.save(k), KisiDTO.class);
+
+        Kisi kk = modelMapper.map(kisi, Kisi.class);
+        return modelMapper.map(kisiRepo.save(kk), KisiDTO.class);
+
     }
 
     @Override
@@ -55,9 +57,12 @@ public class KisiServiceImpl implements IKisiService {
             throw new Exception("Kisi Bulunamadı");
         kg.setAdi(kg.getAdi());
         kg.setSoyadi(kg.getSoyadi());
-        kg.setEMail(kg.getEMail());
+        kg.setCepTel(kg.getCepTel());
         kg.setTcKimlikNo(kg.getTcKimlikNo());
-        kg.setSifre(kg.getSifre());
+        kg.setMail(kg.getMail());
+        kg.setStatu(kg.getStatu());
+        kg.setDepartman(kg.getDepartman());
+
 
         return modelMapper.map(kisiRepo.save(kg), KisiDTO.class);
     }
@@ -71,17 +76,7 @@ public class KisiServiceImpl implements IKisiService {
     public List<KisiDTO> tumunuGetir() {
         return modelMapper.map(kisiRepo.findAll(),new TypeToken<List<KisiDTO>>(){}.getType());
     }
-    @Override
-    public KisiDTO girisControl(KisiDTO kisi) throws Exception {
 
-        Kisi kcont = kisiRepo.findByTcKimlikNoAndSifre(kisi.getTcKimlikNo(), kisi.getSifre());
-        if (kcont == null) {
-            throw new Exception("Üye bulunamadı");
-        }
-        return modelMapper.map(kcont, KisiDTO.class);
-
-
-    }
 
 
 }

@@ -2,43 +2,43 @@ package com.example.kisispring.controller;
 
 import com.example.kisispring.common.Util;
 import com.example.kisispring.dto.BaseResponse;
-import com.example.kisispring.dto.YetkiliDTO;
-import com.example.kisispring.service.IYetkiliService;
+import com.example.kisispring.dto.UyeDTO;
+import com.example.kisispring.service.IUyeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("api/yetkili")
+@RequestMapping("api/uye")
 @RestController
-public class YetkiliController {
+public class UyeController {
 
-    private IYetkiliService yetkiliService;
+    private IUyeService uyeService;
 
     @Autowired
-    public YetkiliController(IYetkiliService yetkiliService)
+    public UyeController(IUyeService uyeService)
     {
-        this.yetkiliService = yetkiliService;
+        this.uyeService = uyeService;
     }
 
     @RequestMapping("idye-gore-getir/{id}")
     public BaseResponse idyeGoreGetir(@PathVariable("id") Long id) {
 
-        return Util.islemSonucGetir(yetkiliService.idyeGoreGetir(id));
+        return Util.islemSonucGetir(uyeService.idyeGoreGetir(id));
     }
 
     @RequestMapping(value = "kaydet", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse kaydet(@RequestBody YetkiliDTO y) {
+    public BaseResponse kaydet(@RequestBody UyeDTO y) {
 
         try {
-            return Util.islemSonucGetir(yetkiliService.yetkiliKaydet(y));
+            return Util.islemSonucGetir(uyeService.uyeKaydet(y));
         } catch (Exception e) {
             return Util.islemSonucGetir(e);
         }
     }
     @RequestMapping(value = "girisControl", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse girisControl(@RequestBody YetkiliDTO y){
+    public BaseResponse girisControl(@RequestBody UyeDTO y){
         try {
-            return Util.islemSonucGetir(yetkiliService.yetkiliGuncelle(y));
+            return Util.islemSonucGetir(uyeService.uyeGuncelle(y));
         } catch (Exception e) {
             return Util.islemSonucGetir(e);
         }
@@ -46,10 +46,10 @@ public class YetkiliController {
     }
 
     @RequestMapping(value = "guncelle", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse guncelle(@RequestBody YetkiliDTO y) {
+    public BaseResponse guncelle(@RequestBody UyeDTO y) {
 
         try {
-            return Util.islemSonucGetir(yetkiliService.yetkiliGuncelle(y));
+            return Util.islemSonucGetir(uyeService.uyeGuncelle(y));
         } catch (Exception e) {
             return Util.islemSonucGetir(e);
         }
@@ -57,7 +57,7 @@ public class YetkiliController {
 
     @RequestMapping(value = "sil/{id}", method = RequestMethod.DELETE)
     public BaseResponse sil(@PathVariable("id") Long id) {
-        yetkiliService.yetkiliSil(id);
+        uyeService.uyeSil(id);
         return Util.islemSonucGetir(null);
     }
 

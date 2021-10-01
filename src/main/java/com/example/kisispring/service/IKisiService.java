@@ -14,8 +14,6 @@ public interface IKisiService {
 
     KisiDTO kisiGuncelle(KisiDTO kisi) throws Exception;
 
-    KisiDTO girisControl(KisiDTO kisi) throws Exception;
-
     void kisiSil(Long id);
 
     List<KisiDTO> tumunuGetir();

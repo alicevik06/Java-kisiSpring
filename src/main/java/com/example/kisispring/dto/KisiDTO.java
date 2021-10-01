@@ -16,10 +16,10 @@ public  class KisiDTO extends BaseDTO{
     private String soyadi;
     private String cepTel;
     private String tcKimlikNo;
-    private String eMail;
+    private String mail;
     private EnumDepartman departman;
     private EnumStatu statu;
-    private String sifre;
+
 
 
 }
